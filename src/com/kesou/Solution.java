@@ -103,4 +103,24 @@ public class Solution {
         return builder.toString();
 
     }
+//    贪心算法解决三元组问题
+    public boolean mergeTriplets(int[][] triplets, int[] target) {
+        boolean one = false, two=false, three = false;
+        for (int i = 0; i < triplets.length; i++) {
+            if (target[0] == triplets[i][0] && target[1] >= triplets[i][1] && target[2] >= triplets[i][2]) {
+                one = true;
+            }
+            if (target[0] >= triplets[i][0] && target[1] == triplets[i][1] && target[2] >= triplets[i][2]) {
+                two = true;
+            }
+            if (target[0] >= triplets[i][0] && target[1] >= triplets[i][1] && target[2] == triplets[i][2]) {
+                three = true;
+            }
+        }
+        if (one && two && three) {
+            return true;
+        }
+        return false;
+    }
+
 }
