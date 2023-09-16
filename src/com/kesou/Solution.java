@@ -103,9 +103,10 @@ public class Solution {
         return builder.toString();
 
     }
-//    贪心算法解决三元组问题
+
+    //    贪心算法解决三元组问题
     public boolean mergeTriplets(int[][] triplets, int[] target) {
-        boolean one = false, two=false, three = false;
+        boolean one = false, two = false, three = false;
         for (int i = 0; i < triplets.length; i++) {
             if (target[0] == triplets[i][0] && target[1] >= triplets[i][1] && target[2] >= triplets[i][2]) {
                 one = true;
@@ -121,6 +122,24 @@ public class Solution {
             return true;
         }
         return false;
+    }
+
+    public int maxProductDifference(int[] nums) {
+        int[] max = new int[2];
+        int[] min = new int[2];
+        min[1] = max[0] = Math.max(nums[0], nums[1]);
+        max[1] = min[0] = Math.min(nums[0], nums[1]);
+        for (int i = 2; i < nums.length; i++) {
+            if (nums[i] > max[0]) {
+                max[1] = max[0];
+                max[0] = nums[i];
+            } else if (nums[i] > max[1]) max[1] = nums[i];
+            if (nums[i] < min[0]) {
+                min[1] = min[0];
+                min[0] = nums[i];
+            } else if (nums[i] < min[1]) min[1] = nums[i];
+        }
+        return max[0] * max[1] - min[0] * min[1];
     }
 
 }

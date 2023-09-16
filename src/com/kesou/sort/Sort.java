@@ -7,12 +7,17 @@ public class Sort {
     public static void main(String[] args) {
         int[] a = {5, 6, 8, 7, 12, 3};
         //findKey(a, 12);
-        int[] gem =  {3, 1, 2};
+        int[] gem = {3, 1, 2};
         int[][] operations = {{0, 2}, {2, 1}, {2, 0}};
-        System.out.println(giveGem(gem,operations));
+        System.out.println(giveGem(gem, operations));
+        for (int i = 0; i < 2; i++) {
+            int[] list = operations[i];
+            System.out.println(list[i]);
+        }
 
 
     }
+
     public static void findKey(int[] a, int value) {
         Map<Integer, Integer> map = new HashMap();
         for (int i = 0; i < a.length; i++) {
@@ -39,20 +44,22 @@ public class Sort {
         for (int i = 0; i < operations.length; i++) {
             int a = operations[i][0];
             int b = operations[i][1];
-            int value = gem[a]/2;
-            gem[a] -=gem[a]/2;
-            gem[b] +=value;
+            int value = gem[a] / 2;
+            gem[a] -= gem[a] / 2;
+            gem[b] += value;
         }
         for (int i = 0; i < gem.length; i++) {
-            if (gem[i]>max){
+            if (gem[i] > max) {
                 max = gem[i];
 
             }
-            if (gem[i]<min){
+            if (gem[i] < min) {
                 min = gem[i];
             }
         }
-        return max-min;
+        return max - min;
     }
+
+
 }
 
