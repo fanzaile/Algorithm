@@ -8,15 +8,17 @@ public class Solution {
         int[] num2 = {2, 7, 9, 3, 1};
         System.out.println(rob(nums));
         System.out.println(twoEggDrop(100));
-
+        String s = "leeetcode";
+        System.out.println(makeFancyString(s));
 
     }
+
     //动态规划解决打家劫舍问题
     public static int rob(int[] nums) {
-        if ( nums == null || nums.length == 0) {
+        if (nums == null || nums.length == 0) {
             return 0;
         }
-        if (nums.length ==1){
+        if (nums.length == 1) {
             return nums[0];
         }
         /*int[] dp = new int[nums.length];
@@ -64,7 +66,8 @@ public class Solution {
 
 
     }
-//    动态规划解决鸡蛋掉落
+
+    //    动态规划解决鸡蛋掉落
     public static int twoEggDrop(int n) {
         int[][] dp = new int[n + 1][3];
         for (int j = 1; j <= 2; j++) {
@@ -81,5 +84,23 @@ public class Solution {
             }
         }
         return dp[n][2];
+    }
+
+    // 删除连续三个出现的字母
+    public static String makeFancyString(String s) {
+        char[] chars = s.toCharArray();
+        StringBuilder builder = new StringBuilder();
+        int count = 0;
+        for (char c : chars) {
+            if (builder.length() > 0 && builder.charAt(builder.length() - 1) == c) {
+                count++;
+            } else
+                count = 1;
+            if (count < 3) {
+                builder.append(c);
+            }
+        }
+        return builder.toString();
+
     }
 }
