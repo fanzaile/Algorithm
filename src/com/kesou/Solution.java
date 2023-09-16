@@ -1,12 +1,17 @@
 package com.kesou;
 
 public class Solution {
+    int[][] memo;
+
     public static void main(String[] args) {
         int[] nums = {1, 2, 3, 1};
         int[] num2 = {2, 7, 9, 3, 1};
         System.out.println(rob(nums));
-    }
+        System.out.println(twoEggDrop(100));
 
+
+    }
+    //动态规划解决打家劫舍问题
     public static int rob(int[] nums) {
         if ( nums == null || nums.length == 0) {
             return 0;
@@ -58,5 +63,23 @@ public class Solution {
 */
 
 
+    }
+//    动态规划解决鸡蛋掉落
+    public static int twoEggDrop(int n) {
+        int[][] dp = new int[n + 1][3];
+        for (int j = 1; j <= 2; j++) {
+            dp[1][j] = 1;
+        }
+        for (int i = 1; i <= n; i++) {
+            dp[i][1] = i;
+        }
+        for (int i = 2; i <= n; i++) {
+            dp[i][2] = Integer.MAX_VALUE;
+            for (int p = 1; p <= i; p++) {
+                int curr = Math.max(dp[p - 1][1], dp[i - p][2]) + 1;
+                dp[i][2] = Math.min(dp[i][2], curr);
+            }
+        }
+        return dp[n][2];
     }
 }
